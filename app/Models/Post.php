@@ -14,6 +14,11 @@ class Post {
     }
 
 
+    /**
+     * Get all posts
+     *
+     * @return Collection
+     */
     public static function all(): Collection {
 
         return cache()->rememberForever('posts.all', function(){
@@ -32,9 +37,34 @@ class Post {
     }
 
 
+    /**
+     * Get post from requested slug
+     *
+     * @param string $slug slug of post to find
+     * @return null|Post
+     */
     public static function find(string $slug): ?self {
 
         return static::all()->firstWhere('slug', '=', $slug);
+
+    }
+
+
+    /**
+     * Get post from requested slug or fail
+     *
+     * @param string $slug slug of post to find
+     * @return Post
+     */
+    public static function findOrFail(string $slug): self {
+
+        $post = static::find($slug);
+
+        if(!$post){
+            throw new ModelNotFoundException();
+        }
+
+        return $post;
 
     }
 
