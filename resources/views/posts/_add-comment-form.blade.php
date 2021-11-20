@@ -20,7 +20,7 @@
                 @enderror
             </div>
             <div class="flex justify-end mt-5 pt-5 border-t border-gray-200">
-                <x-submit-button>Post</x-submit-button>
+                <x-form.button>Post</x-form.button>
             </div>
         </form>
     </x-panel>
